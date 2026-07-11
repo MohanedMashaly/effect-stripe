@@ -1,39 +1,25 @@
 import { Schema } from "effect"
-class Address extends Schema.Class<Address>("Address")({
-    city: Schema.NullOr(Schema.String),
-    country: Schema.NullOr(Schema.String),
-    line1: Schema.NullOr(Schema.String),
-    line2: Schema.NullOr(Schema.String),
-    postal_code: Schema.NullOr(Schema.String),
-    state: Schema.NullOr(Schema.String),
-  }) {}
-  
-  export const CustomerId = Schema.String.pipe(
-    Schema.pattern(/^cus_/),
-    Schema.brand("CustomerId")
-  )
-  
-  export type CustomerId = typeof CustomerId.Type
+import { Address } from "./Common";
 
-  export const StripeAmount = Schema.Int.pipe(
-    Schema.brand("StripeAmount"))
+export const CustomerId = Schema.String.pipe(
+  Schema.pattern(/^cus_/),
+  Schema.brand("CustomerId")
+)
 
-  export type StripeAmount = typeof StripeAmount.Type;
-
-  export const StripeMetadata = Schema.Record({ key: Schema.String, value: Schema.String })
+export type CustomerId = typeof CustomerId.Type
 
 
-  export class Customer extends Schema.Class<Customer>("Customer")({
-    id: CustomerId,
-    object: Schema.Literal("customer"),
-    balance: StripeAmount,
-    name: Schema.NullOr(Schema.String),
-    email: Schema.NullOr(Schema.String),
-    phone: Schema.NullOr(Schema.String),
-    currency: Schema.NullOr(Schema.String),
-    livemode: Schema.Boolean,
-    address: Schema.NullOr(Address),
-    created: Schema.Number,
-    delinquent: Schema.NullOr(Schema.Boolean),
-    metadata: StripeMetadata,
-  }) {}
+export class Customer extends Schema.Class<Customer>("Customer")({
+  id: CustomerId,
+  object: Schema.Literal("customer"),
+  name: Schema.optional(Schema.String),
+  email: Schema.optional(Schema.String),
+  phone: Schema.optional(Schema.String),
+  balance: Schema.Number,
+  currency: Schema.optional(Schema.String),
+  livemode: Schema.Boolean,
+  address: Schema.optional(Address),
+  created: Schema.Number,
+  delinquent: Schema.Boolean,
+  metadata: Schema.Record({ key: Schema.String, value: Schema.Unknown }),
+}) {}
