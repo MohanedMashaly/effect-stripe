@@ -13,6 +13,7 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
-    "effect": "^3.21.4"
+    "effect": "^3.21.4",
+    "stripe": "^22.3.1"
   }
 }

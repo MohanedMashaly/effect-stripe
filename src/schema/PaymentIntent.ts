@@ -32,22 +32,12 @@ export const CaptureMethod = Schema.Literal("automatic", "automatic_async", "man
 export const ConfirmationMethod = Schema.Literal("automatic", "manual")
 
 export const PaymentMethodType = Schema.Literal(
-  "card",
-  "link",
-  "us_bank_account",
-  "sepa_debit",
-  "ideal",
-  "paypal"
+  "card", "link", "us_bank_account", "sepa_debit", "ideal", "paypal"
 )
 
 export const CancellationReason = Schema.Literal(
-  "duplicate",
-  "fraudulent",
-  "requested_by_customer",
-  "abandoned",
-  "failed_invoice",
-  "void_invoice",
-  "automatic"
+  "duplicate", "fraudulent", "requested_by_customer", "abandoned",
+  "failed_invoice", "void_invoice", "automatic"
 )
 
 export const AmountDetailsTip = Schema.Struct({
@@ -63,7 +53,7 @@ export const AutomaticPaymentMethods = Schema.Struct({
 })
 
 export const PaymentMethodOptionsCard = Schema.Struct({
-  installments: Schema.NullOr(Schema.Unknown), 
+  installments: Schema.NullOr(Schema.Unknown),
   mandate_options: Schema.NullOr(Schema.Unknown),
   network: Schema.NullOr(Schema.String),
   request_three_d_secure: Schema.Literal("automatic", "any", "challenge")
@@ -78,7 +68,10 @@ export const PaymentMethodOptions = Schema.Struct({
   link: Schema.optional(PaymentMethodOptionsLink)
 })
 
-export const StripeMetadata = Schema.Record({ key: Schema.String, value: Schema.String })
+export const StripeMetadata = Schema.Record({
+  key: Schema.String,
+  value: Schema.String
+})
 
 export const PaymentIntent = Schema.Struct({
   id: PaymentIntentId,
@@ -90,20 +83,20 @@ export const PaymentIntent = Schema.Struct({
   application: Schema.NullOr(Schema.String),
   application_fee_amount: Schema.NullOr(StripeAmount),
   automatic_payment_methods: Schema.NullOr(AutomaticPaymentMethods),
-  canceled_at: Schema.NullOr(Schema.Number), 
+  canceled_at: Schema.NullOr(Schema.Number),
   cancellation_reason: Schema.NullOr(CancellationReason),
   capture_method: CaptureMethod,
   client_secret: Schema.NullOr(ClientSecret),
   confirmation_method: ConfirmationMethod,
-  created: Schema.Number, 
-  currency: Schema.String.pipe(Schema.length(3)), 
-  customer: Schema.NullOr(Schema.String), 
+  created: Schema.Number,
+  currency: Schema.String.pipe(Schema.length(3)),
+  customer: Schema.NullOr(Schema.String),
   description: Schema.NullOr(Schema.String),
-  last_payment_error: Schema.NullOr(Schema.Unknown), 
+  last_payment_error: Schema.NullOr(Schema.Unknown),
   latest_charge: Schema.NullOr(Schema.String),
   livemode: Schema.Boolean,
   metadata: StripeMetadata,
-  next_action: Schema.NullOr(Schema.Unknown), 
+  next_action: Schema.NullOr(Schema.Unknown),
   on_behalf_of: Schema.NullOr(Schema.String),
   payment_method: Schema.NullOr(Schema.String),
   payment_method_options: PaymentMethodOptions,
@@ -112,7 +105,7 @@ export const PaymentIntent = Schema.Struct({
   receipt_email: Schema.NullOr(Schema.String),
   review: Schema.NullOr(Schema.String),
   setup_future_usage: Schema.NullOr(Schema.Literal("on_session", "off_session")),
-  shipping: Schema.NullOr(Schema.Unknown), 
+  shipping: Schema.NullOr(Schema.Unknown),
   source: Schema.NullOr(Schema.String),
   statement_descriptor: Schema.NullOr(Schema.String),
   statement_descriptor_suffix: Schema.NullOr(Schema.String),
