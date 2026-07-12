@@ -4,7 +4,7 @@
   "description": "effect-stripe is third party package wrapping stripe in Effect-TS flavor, it handles basic workflows for basic stripe operations creating(customer, payments, payment intents, etc.)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "oxlint src --ignore-path .oxlintignore" 
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "effect": "^3.21.4",
+    "oxlint": "^1.73.0",
     "stripe": "^22.3.1"
   }
 }
