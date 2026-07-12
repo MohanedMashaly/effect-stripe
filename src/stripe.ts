@@ -26,4 +26,3 @@ export const StripeLive = (config: StripeConfig) =>
       catch: (cause) => new StripeConfigError({ cause }),
     })
   )
-  
