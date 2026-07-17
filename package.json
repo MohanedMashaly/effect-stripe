@@ -1,10 +1,10 @@
 {
   "name": "effect-stripe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "effect-stripe is third party package wrapping stripe in Effect-TS flavor, it handles basic workflows for basic stripe operations creating(customer, payments, payment intents, etc.)",
   "main": "index.js",
   "scripts": {
-    "lint": "oxlint src --ignore-path .oxlintignore" 
+    "lint": "oxlint src --ignore-path .oxlintignore"
   },
   "keywords": [],
   "author": "",
